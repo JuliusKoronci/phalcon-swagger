@@ -1,10 +1,10 @@
-##SWAGGER support for Phalcon
+## SWAGGER support for Phalcon
 
-###What it does?
+### What it does?
 
 This bundle/plugin parses your source code and generates swagger documentation for your API.
 
-###How does it work?
+### How does it work?
 The bundle has one controller with 2 actions. 
 
 - The first action parses your source code and returns a json
@@ -12,12 +12,12 @@ The bundle has one controller with 2 actions.
 
 Swagger-UI uses CDN's for its assets, there for no js or css files are included!
 
-###Hot to install?
+### Hot to install?
 
 You can install the bundle via composer or just download the git repos and paste it into your project dir.
 
 There are 2 importants things which needs to be configured:
-####Routing
+#### Routing
 You must configure 2 routes in order to get it working:
 
 ```
@@ -38,7 +38,7 @@ The second route is the route where you want to be able to access the documentat
 
 I am using an env file for my configurations therefore the first route is a parameter in my env file. 
 The reason for this is that the URL for the json response needs to be registered in the DI as well.
-####DI
+#### DI
 The bundle is expecting an entry with the name swagger in your di container.
 
 Here I am loading the configuration from an .env file:
@@ -92,7 +92,7 @@ These values are mandatory:
 - jsonUri - the url you configured for the json response e.g. /swagger-json
 
 
-###Usage 
+### Usage 
 
 The usage is the same as with the standard Swagger library, see https://github.com/zircote/swagger-php for more info.
 
@@ -131,7 +131,7 @@ class SwaggerController
 !Please note that the configuration si overwriting the annotation, therefore use this as an extend only!
 
 
-###What is missing
+### What is missing
 
 I cam up with the library quiet fast and had no time to write tests or test it on more examples. 
 The library should work and I am using it in my projects and everyone is free to use or modify it as he sees fits. 
