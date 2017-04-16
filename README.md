@@ -130,6 +130,7 @@ class BaseController
 
 !Please note that the configuration si overwriting the annotation, therefore use this as an extend only!
 
+![alt text](https://github.com/JuliusKoronci/phalcon-swagger/blob/master/screen.png "Screen of Swagger UI")
 
 ### What is missing
 
