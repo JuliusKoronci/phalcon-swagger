@@ -10,13 +10,13 @@ The bundle has one controller with 2 actions.
 - The first action parses your source code and returns a json
 - The second controller renders a view to display Swagger-UI
 
-Swagger-UI uses CDN's for its assets, there for no js or css files are included!
+Swagger-UI uses CDN's for its assets, therefor no js or css files are included!
 
 ### Hot to install?
 
 You can install the bundle via composer or just download the git repos and paste it into your project dir.
 
-There are 2 importants things which needs to be configured:
+There are 2 important things which needs to be configured:
 #### Routing
 You must configure 2 routes in order to get it working:
 
@@ -31,12 +31,12 @@ You must configure 2 routes in order to get it working:
         ],
     ],
 ```
-The first route is the rout of the json response which swagger needs in order to render the documentation. 
+The first route is the route of the json response, which swagger needs in order to render the documentation. 
 This URL maps to a controller which scans your project for annotations.
 
 The second route is the route where you want to be able to access the documentation.
 
-I am using an env file for my configurations therefore the first route is a parameter in my env file. 
+I am using an env file for my configurations, therefore the first route is a parameter in my env file. 
 The reason for this is that the URL for the json response needs to be registered in the DI as well.
 #### DI
 The bundle is expecting an entry with the name swagger in your di container.
@@ -57,7 +57,7 @@ Here I am loading the configuration from an .env file:
     ],
 ```
 
-And hre I am registering the di:
+And here I am registering the di:
 
 ```
     /**
@@ -77,13 +77,13 @@ And hre I am registering the di:
     }
 ```
 
-Now it is up to you how you get the swagger entry into your di container. 
+Now, it is up to you how you get the swagger entry into your di container. 
 You can just go and register all the values statically.
 
-These values are mandatory:
+These values are expected and mandatory:
 - path - a path to your source dir, which should be scanned, ideally ```APP_PATH. '/src'```
 - host - your domain name e.g. my-awesome-api.com
-- schemes <array> - schemes which are supported e.g. http,https
+- schemes [array] - schemes which are supported e.g. http,https(this must be an array)
 - basePath - url base  path e.g. /
 - version - your API version e.g. 0.0.1
 - title - title of your application
@@ -96,7 +96,7 @@ These values are mandatory:
 
 The usage is the same as with the standard Swagger library, see https://github.com/zircote/swagger-php for more info.
 
-I am using just a basic configuration for Swagger here, if you would like to extend it, use ignored folders etc. 
+I am using just a basic configuration for Swagger but if you would like to extend it, use ignored folders etc. 
 I recommend to have an annotation on your base controller like this:
 
 ```
@@ -125,7 +125,7 @@ I recommend to have an annotation on your base controller like this:
  * )
  */
 
-class SwaggerController
+class BaseController
 ```
 
 !Please note that the configuration si overwriting the annotation, therefore use this as an extend only!
@@ -133,7 +133,7 @@ class SwaggerController
 
 ### What is missing
 
-I cam up with the library quiet fast and had no time to write tests or test it on more examples. 
-The library should work and I am using it in my projects and everyone is free to use or modify it as he sees fits. 
+I came up with the library quiet fast and had no time to write tests or test it on more examples. 
+The library should work and I am using it in my projects. Everyone is free to use or modify it as he sees fit. 
 I will be more than happy to have some pull requests :) if someone is interested.
 
