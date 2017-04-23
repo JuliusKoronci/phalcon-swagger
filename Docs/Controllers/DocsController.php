@@ -5,10 +5,16 @@ namespace Igsem\Docs\Controllers;
 use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\View\Simple;
 
-
+/**
+ * Class DocsController
+ * Methods to render Swagger UI and generate JSON definitions
+ * @package Igsem\Docs\Controllers
+ */
 class DocsController extends Controller
 {
     /**
+     * Parses your application for swagger annotations and returns a json. This is used by the Swagger UI
+     *
      * @return string
      */
     public function indexAction()
@@ -28,6 +34,10 @@ class DocsController extends Controller
     }
 
     /**
+     * Manually render a view which will load swagger definitions and display the swagger UI
+     *
+     * We don't know how the view will be handled, therefore we don't use the view from DI
+     *
      * @return string
      */
     public function docsAction()
