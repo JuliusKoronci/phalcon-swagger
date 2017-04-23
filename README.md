@@ -132,6 +132,88 @@ class BaseController
 
 ![alt text](https://github.com/JuliusKoronci/phalcon-swagger/blob/master/screen.png "Screen of Swagger UI")
 
+### Examples
+
+Here is how to annotate models: 
+
+```
+
+/**
+ * @SWG\Definition(required={"email", "name", "password"}, type="object", @SWG\Xml(name="User"))
+ */
+class User extends Model
+{
+    /**
+     * @SWG\Property(name="id", type="string", description="UUID")
+     * @var int
+     */
+    public $id;
+
+    /**
+     * @SWG\Property(name="name", type="string")
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @SWG\Property(name="email", type="string")
+     * @var string
+     */
+    public $email;
+
+    /**
+     * @SWG\Property(name="password", type="string")
+     * @var string
+     */
+    public $password;
+}
+```
+
+And an example controller for login:
+
+```
+/**
+     *
+     * @SWG\POST(
+     *   path="/login",
+     *   summary="Login",
+     *   produces={"application/json"},
+     *     @SWG\Parameter(
+     *     in="formData",
+     *     type="string",
+     *     name="email",
+     *     required=true,
+     *     @SWG\Schema(ref="#/definitions/User")
+     *   ),
+     *     @SWG\Parameter(
+     *     in="formData",
+     *     type="string",
+     *     name="password",
+     *     required=true,
+     *     @SWG\Schema(ref="#/definitions/User")
+     *   ),
+     *   @SWG\Response(
+     *     response=200,
+     *     description="Returns a JWT token for authorization"
+     *   ),
+     *   @SWG\Response(
+     *     response=404,
+     *     description="Not found User, Invalid password"
+     *   ),
+     *   @SWG\Response(
+     *     response=422,
+     *     description="Validation of formData failed"
+     *   )
+     * )
+     * @return string
+     */
+    public function loginAction()
+    {
+        ...
+```
+
+![alt text](https://github.com/JuliusKoronci/phalcon-swagger/blob/master/login.png "Screen of Swagger UI Login")
+
 ### What is missing
 
 I came up with the library quiet fast and had no time to write tests or test it on more examples. 
