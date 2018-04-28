@@ -2,6 +2,7 @@
 
 namespace Igsem\Docs\Controllers;
 
+use Igsem\Docs\Services\DocsService;
 use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\View\Simple;
 
@@ -21,7 +22,8 @@ class DocsController extends Controller
     {
         /** @var array $config */
         $config = $this->di->get('swagger');
-        $swagger = \Swagger\scan($config['path']);
+        $options = DocsService::getOptions($config);
+        $swagger = \Swagger\scan($config['path'], $options);
         $swagger->host = $config['host'];
         $swagger->schemes = $config['schemes'];
         $swagger->basePath = $config['basePath'];

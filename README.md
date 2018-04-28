@@ -54,6 +54,7 @@ Here I am loading the configuration from an .env file:
         'description' => getenv('SWAGGER_DESCRIPTION'),
         'email' => getenv('SWAGGER_EMAIL'),
         'jsonUri' => getenv('SWAGGER_JSON_URI'),
+        'exclude' => explode(',', getenv('SWAGGER_EXCLUDE')),
     ],
 ```
 
@@ -90,6 +91,9 @@ These values are expected and mandatory:
 - description  - description of your application
 - email - contact email
 - jsonUri - the url you configured for the json response e.g. /swagger-json
+
+These values are optional:
+- exclude [string|array] - a path(s) to exclude from scanning, ex. ```APP_PATH. '/src/path_to_exclude/'``` or ```[APP_PATH. '/src/path_to_exclude_1/', APP_PATH. '/src/path_to_exclude_2/']```
 
 
 ### Usage 
@@ -128,7 +132,7 @@ I recommend to have an annotation on your base controller like this:
 class BaseController
 ```
 
-!Please note that the configuration si overwriting the annotation, therefore use this as an extend only!
+!Please note that the configuration is overwriting the annotation, therefore use this as an extend only!
 
 ![alt text](https://github.com/JuliusKoronci/phalcon-swagger/blob/master/screen.png "Screen of Swagger UI")
 
