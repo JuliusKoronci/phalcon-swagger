@@ -3,7 +3,7 @@
   "description": "A Swagger plugin to generate API documentation for Phalcon PHP framework.",
   "type": "library",
   "require": {
-    "zircote/swagger-php": "^2.0"
+    "zircote/swagger-php": "^3.0"
   },
   "license": "MIT",
   "authors": [
