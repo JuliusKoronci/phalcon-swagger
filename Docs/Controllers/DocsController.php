@@ -6,37 +6,40 @@ use Igsem\Docs\Services\DocsService;
 use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\View\Simple;
 
+
+
 /**
  * Class DocsController
- * Methods to render Swagger UI and generate JSON definitions
+ * Methods to render openapi UI and generate JSON definitions
  * @package Igsem\Docs\Controllers
  */
 class DocsController extends Controller
 {
     /**
-     * Parses your application for swagger annotations and returns a json. This is used by the Swagger UI
+     * Parses your application for openapi annotations and returns a json. This is used by the openapi UI
      *
      * @return string
      */
     public function indexAction()
     {
         /** @var array $config */
-        $config = $this->di->get('swagger');
+        $config = $this->di->get('openapi');
         $options = DocsService::getOptions($config);
-        $swagger = \Swagger\scan($config['path'], $options);
-        $swagger->host = $config['host'];
-        $swagger->schemes = $config['schemes'];
-        $swagger->basePath = $config['basePath'];
-        $swagger->info->version = $config['version'];
-        $swagger->info->title = $config['title'];
-        $swagger->info->description = $config['description'];
-        $swagger->info->contact->email = $config['email'];
-
-        return $swagger->__toString();
+        $openapi = \OpenApi\scan($config['path'], $options);
+        $openapi->servers = $config['servers'];
+        $openapi->info = [
+          "title"       => $config['title'],
+          "version"     => $config['version'],
+          "description" => $config['description'],
+          "contact"     => [
+            "email" => $config['email']
+          ]
+        ];
+        return $openapi->toJson();
     }
 
     /**
-     * Manually render a view which will load swagger definitions and display the swagger UI
+     * Manually render a view which will load openapi definitions and display the openapi UI
      *
      * We don't know how the view will be handled, therefore we don't use the view from DI
      *
@@ -46,7 +49,7 @@ class DocsController extends Controller
     {
         $view = new Simple();
         return $view->render(__DIR__ . '/../views/Docs/docs', [
-            'url' => $this->di->get('swagger')['jsonUri'],
+            'url' => $this->di->get('openapi')['jsonUri'],
         ]);
     }
 }
